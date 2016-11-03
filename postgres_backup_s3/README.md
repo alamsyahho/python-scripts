@@ -1,4 +1,4 @@
-# PostgresSQL Backup to Amazon S3 bucket
+# Postgres Backup to Amazon S3 bucket
 
 Python script to run pg_dump, compress then upload the compressed file to amazon s3 bucket
 
