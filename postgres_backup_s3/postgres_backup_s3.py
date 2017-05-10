@@ -65,9 +65,9 @@ def _pg_dump(db, destination):
     _fnull = open(os.devnull, 'w')
     subprocess.call(['pg_dump', '-U', db_user, '-d', db_name, '-f', destination], stdout=_fnull, stderr=subprocess.STDOUT)
 
-def _compress_backup(source, destination):
-    with closing(tarfile.open(source, "w:bz2")) as tar:
-        tar.add(destination)
+def _compress_backup(source, destination, file_name):
+        with closing(tarfile.open(source, "w:bz2")) as tar:
+        tar.add(destination, arcname=file_name)
 
 def _upload_s3(aws_access_key_id, aws_secret_access_key, file, bucket):
     try:
@@ -107,7 +107,7 @@ _info('Backup database %s to %s' %(db_name, backup_sql))
 _pg_dump(db_name, backup_sql)
 
 _info('Compressing backup to %s' % backup_compressed)
-_compress_backup(backup_compressed, backup_sql)
+_compress_backup(backup_compressed, backup_sql, db_name + '.sql')
 
 _info('Uploading file to ' + s3_bucket + s3_dir)
 _upload_s3(s3_access_key, s3_secret_key, backup_compressed, s3_bucket)
