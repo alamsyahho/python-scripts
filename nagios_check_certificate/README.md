@@ -1,4 +1,4 @@
-# Nagios plugin to check redis queue
+# Nagios plugin to check https endpoints
 
 Python plugins for nagios to monitor https endpoint with 2 main features:
 1. This plugins will monitor if https connection is self-signed or whether certificate chain is broken using pycurl
