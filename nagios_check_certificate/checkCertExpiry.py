@@ -58,10 +58,10 @@ def certChecks(ip_address, port):
             message += '%s has expired on %s.' %( cert.get_subject(),expiredDate )
         elif expiredDays <= critThreshold:
             crit = True
-            message += '%s will be expired less than %d.' %( cert.get_subject(),expiredDays )
+            message += '%s will be expired in less than %d days.' %( cert.get_subject(),expiredDays )
         elif expiredDays <= warnThreshold:
             warn = True
-            message += '%s will be expired less than %d.' %( cert.get_subject(),expiredDays )
+            message += '%s will be expired in less than %d days.' %( cert.get_subject(),expiredDays )
 
     return crit, warn, message
 
